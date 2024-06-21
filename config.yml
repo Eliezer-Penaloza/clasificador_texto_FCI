@@ -1,0 +1,18 @@
+credentials:
+  usernames:
+    epenaloza:
+      email: epenaloza@cfg.gob.ve
+      name: eliezer penaloza
+      password: $2b$12$XzW16I6txH7huLyxjQWCje.L37zxLW8gGy8X3GeHwvrbhrjPM4N5e
+
+    rmendoza : 
+      email: rmendoza@cfg.gob.ve
+      name: reyfel mendoza
+      password: $2b$12$CXpYSaMD/ASiCAmPZ4Jwj.f30CWdf1XlhonG.zhbtwHI0K2BBCryu
+cookie:
+  expiry_days: 30
+  key: some_signature_key #must be string
+  name: some_cookie_name
+
+preauthorized:
+  emails: eliezer.oniros@gmail.com
