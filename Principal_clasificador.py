@@ -6,7 +6,7 @@ from pathlib import Path
 import yaml
 from yaml.loader import SafeLoader
 import streamlit_authenticator as stauth
-from sklearn.feature_extraction.text import CountVectorizer
+#from sklearn.feature_extraction.text import CountVectorizer
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
