@@ -398,7 +398,7 @@ with col1:
 with col5:
     st.image(img2)
 
-with open('clasificador_texto/config.yml') as file:
+with open('config.yml') as file:
     config = yaml.load(file, Loader= SafeLoader)
 
 authenticator = stauth.Authenticate(
