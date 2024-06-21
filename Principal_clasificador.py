@@ -11,9 +11,9 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
-nltk.download('stopwords')
-nltk.download('wordnet')
-from sklearn.linear_model import LogisticRegression
+#nltk.download('stopwords')
+#nltk.download('wordnet')
+#from sklearn.linear_model import LogisticRegression
 import re
 
 
