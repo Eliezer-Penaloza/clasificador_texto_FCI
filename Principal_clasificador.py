@@ -432,16 +432,16 @@ elif st.session_state['authentication_status'] == True:
     st.write('Bienvenidos al clasificador de texto')
 
     #with open("primer_modelo(1).pkl", "rb") as file:
-    loaded_model = pickle.load('modelo_categoria.joblib')
+    loaded_model = load('modelo_categoria.joblib')
 
     #with open("count_vectorizer (1).pkl", "rb") as file:
-    loaded_tokenizer = pickle.load('vectorizer_categoria.joblib')
+    loaded_tokenizer = load('vectorizer_categoria.joblib')
 
     #with open("primer_modelo_responsable.pkl", "rb") as file:
-    loaded_model_responsable = pickle.load('modelo_responsable.joblib')
+    loaded_model_responsable = load('modelo_responsable.joblib')
 
     #with open("count_vectorizer_responsable.pkl", "rb") as file:
-    loaded_tokenizer_responsable = pickle.load('vectorizer_responsable.joblib')     
+    loaded_tokenizer_responsable = load('vectorizer_responsable.joblib')     
 
     txt = st.text_input('Por favor, ingrese un texto')
 
