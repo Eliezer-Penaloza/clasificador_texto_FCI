@@ -1,5 +1,5 @@
 import streamlit as st
-import pickle
+#import pickle
 import pandas as pd
 #import matplotlib.pyplot as plt
 from pathlib import Path
