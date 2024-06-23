@@ -448,11 +448,8 @@ elif st.session_state['authentication_status'] == True:
 
 if txt != '':
 
-    st.write('El texto pertenece a la categoria: ' + loaded_model.predict(loaded_tokenizer.transform([limpieza_texto(txt)])[0]))
-    st.write('Debe ser atendido por: ' + loaded_model_responsable.predict(loaded_tokenizer_responsable.transform([limpieza_texto(txt)])[0]))  
-else:
-    st.write('El texto pertenece a la categoria: ' )
-    st.write('Debe ser atendido por: ' ) 
+      st.write('El texto pertenece a la categoria: ' + loaded_model.predict(loaded_tokenizer.transform([limpieza_texto(txt)])[0]))
+      st.write('Debe ser atendido por: ' + loaded_model_responsable.predict(loaded_tokenizer_responsable.transform([limpieza_texto(txt)])[0]))  
         
         
     authenticator.logout('Cerrar sesión', 'main', key= 'unique_key')
