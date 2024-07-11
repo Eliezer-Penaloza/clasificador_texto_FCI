@@ -19,6 +19,50 @@ from joblib import dump
 from joblib import load
 
 
+cat = ['Gob_Guarico', 'OAC']
+
+cat2 = [ 'Proceso De Valoración Del Proyecto',
+       'Cambio De Vocero(A) Responsable',
+       'Problemas Con El Rif O Código Situr', 'Reporte De Insumos']
+
+
+
+def cfg(x):
+   l_cfg = ['Consejo Federal de Gobierno - FCI-Sofia Margarita Fleury Hernandez',
+ 'Consejo Federal de Gobierno - FCI-Cruz David Mata Noguera',
+ 'Consejo Federal de Gobierno - FCI-Ricardo Jose Musett Roman',
+ 'Consejo Federal de Gobierno - FCI-Luisana Valentina Velasquez Fermin',
+ 'Consejo Federal de Gobierno - FCI-Sin Responsable',
+ 'Consejo Federal de Gobierno - FCI-Joali Gabriela Moreno Pinto',
+ 'Consejo Federal de Gobierno - FCI-Erika Victoria Mertz Rodriguez',
+ 'Consejo Federal de Gobierno - FCI-Adriana Teresa Hurtado Hernandez']
+
+   l_com = [ 'Ministerio del Poder Popular para las Comunas y los Movimientos Sociales-Cesar Eduardo Carrero Aristizabal',
+            'Ministerio del Poder Popular para las Comunas y los Movimientos Sociales-Sin Responsable',
+ 'Ministerio del Poder Popular para las Comunas y los Movimientos Sociales-Cesar Will Martinez Infante',
+ 'Ministerio del Poder Popular para las Comunas y los Movimientos Sociales-Hernan Jose Vargas Perez',
+ 'Ministerio del Poder Popular para las Comunas y los Movimientos Sociales-Fernando Jose Rodriguez Meza',
+ 'Ministerio del Poder Popular para las Comunas y los Movimientos Sociales-Ciro Antonio Rodriguez Villanueva']
+
+   l_mer = ['Gobernación del estado Bolivariano de Mérida-Sin Responsable']
+
+   l_gua = ['Gobernación del Estado Bolivariano de Guárico-Greidymar Nohelia Barrios',
+            'Gobernación del Estado Bolivariano de Guárico-Sin Responsable',
+            'Gobernación del Estado Bolivariano de Guárico-Yolkis Yoliana Villafranca Ovalles']
+
+   if x  in l_cfg:
+      return "OAC"
+   elif x == 'Consejo Federal de Gobierno - FCI-Luis German Rivas Zambrano':
+      return 'SYEPP'
+   elif x == 'Consejo Federal de Gobierno - FCI-Ciro Antonio Rodriguez Villanueva':
+      return 'Territorial'
+   elif x in l_com:
+      return 'Comunas'
+   elif x in l_gua:
+      return 'Gob_Guarico'
+   else:
+      return 'Gob_Merida'
+
 
 l = ['de',
  'la',
@@ -395,6 +439,19 @@ col1,col2,col3,col4,col5 = st.columns(5)
 img1 = 'LOGOHORIZONTAL.jpeg'#'/home/epenaloza/Descargas/LOGOHORIZONTAL.jpeg'
 img2 = '-5140927617266986116_121.jpg'#'EPT/compartir/clasificador_texto/-5140927617266986116_121.jpg'
 
+df = pd.read_csv('/home/epenaloza/Documentos/trabajos_python/entorno_virtual/venv2/next/comunicaciones_09_07_2024.csv')
+df['fecha_creacion'] = pd.to_datetime(df['fecha_creacion'])
+df['nueva_etiqueta'] = df['receptor'] + '-' + df['responsable']
+df['responsable2'] = df['nueva_etiqueta'].apply(lambda x: cfg(x))
+
+df['responsable_final'] = df['responsable2'].apply(lambda x: x  if x in cat else 'categoria0')
+df['categoria2'] = df['categoria'].apply(lambda x: x  if x in cat2 else 'categoria0')
+df2 = df[df['fecha_creacion'] >= pd.to_datetime('2024-03-05')]
+df2['mensaje'] = df2['mensaje'].apply(lambda x: limpieza_texto(x))
+df2['long_mensaje_2'] = df2['mensaje'].apply(lambda x: len(x.split()))
+df2 = df2[df2['long_mensaje_2'] >= 5]
+df2 = df2.drop_duplicates()
+
 with col1:
     st.image(img1)
 with col5:
@@ -432,16 +489,18 @@ elif st.session_state['authentication_status'] == True:
     st.write('Bienvenidos al clasificador de texto')
 
     #with open("primer_modelo(1).pkl", "rb") as file:
-    loaded_model = load('modelo_categoria.joblib')
+    loaded_model = load('modelo_categoria_11072024(1).joblib')
 
     #with open("count_vectorizer (1).pkl", "rb") as file:
-    loaded_tokenizer = load('vectorizer_categoria.joblib')
+    loaded_tokenizer = load('vectorizer_categoria_11072024(1).joblib')
 
     #with open("primer_modelo_responsable.pkl", "rb") as file:
     loaded_model_responsable = load('modelo_responsable.joblib')
 
     #with open("count_vectorizer_responsable.pkl", "rb") as file:
-    loaded_tokenizer_responsable = load('vectorizer_responsable.joblib')     
+    loaded_tokenizer_responsable = load('vectorizer_responsable.joblib') 
+
+    st.dataframe(df2[['mensaje', 'categoria2', 'responsable_final']])
 
     txt = st.text_input('Por favor, ingrese un texto')
 
