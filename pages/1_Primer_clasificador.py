@@ -1,5 +1,5 @@
 import streamlit as st
-import pickle
+#import pickle
 import pandas as pd
 #import matplotlib.pyplot as plt
 from pathlib import Path
@@ -11,8 +11,8 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
-nltk.download('stopwords')
-nltk.download('wordnet')
+#nltk.download('stopwords')
+#nltk.download('wordnet')
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
 import re
@@ -20,7 +20,8 @@ import altair as alt
 from joblib import load
 
 
-df = pd.read_csv('/home/epenaloza/Documentos/trabajos_python/entorno_virtual/venv2/next/comunicaciones_09_07_2024.csv')
+
+df = pd.read_csv('comunicaciones_09_07_2024.csv')
 df['fecha_creacion'] = pd.to_datetime(df['fecha_creacion'])
 
 
@@ -79,11 +80,11 @@ df2['long_mensaje_2'] = df2['mensaje'].apply(lambda x: len(x.split()))
 df2 = df2[df2['long_mensaje_2'] >= 5]
 df2 = df2.drop_duplicates()
 
-with open("/home/epenaloza/Documentos/trabajos_python/entorno_virtual/venv2/EPT/compartir/clasificador_texto/vectorizer_categoria_11072024(1).joblib", "rb") as file:
+with open("vectorizer_categoria_11072024(1).joblib", "rb") as file:
         loaded_tokenizer = load(file)
         
 
-with open("/home/epenaloza/Documentos/trabajos_python/entorno_virtual/venv2/EPT/compartir/clasificador_texto/modelo_categoria_11072024(1).joblib", "rb") as file:
+with open("modelo_categoria_11072024(1).joblib", "rb") as file:
         loaded_model = load(file)
 
 df2['categoria_modelo'] = df2['mensaje'].apply(lambda x : loaded_model.predict(loaded_tokenizer.transform([x]))[0])
