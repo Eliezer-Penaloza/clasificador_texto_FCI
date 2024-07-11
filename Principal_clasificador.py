@@ -439,7 +439,7 @@ col1,col2,col3,col4,col5 = st.columns(5)
 img1 = 'LOGOHORIZONTAL.jpeg'#'/home/epenaloza/Descargas/LOGOHORIZONTAL.jpeg'
 img2 = '-5140927617266986116_121.jpg'#'EPT/compartir/clasificador_texto/-5140927617266986116_121.jpg'
 
-df = pd.read_csv('/home/epenaloza/Documentos/trabajos_python/entorno_virtual/venv2/next/comunicaciones_09_07_2024.csv')
+df = pd.read_csv('comunicaciones_09_07_2024.csv')
 df['fecha_creacion'] = pd.to_datetime(df['fecha_creacion'])
 df['nueva_etiqueta'] = df['receptor'] + '-' + df['responsable']
 df['responsable2'] = df['nueva_etiqueta'].apply(lambda x: cfg(x))
