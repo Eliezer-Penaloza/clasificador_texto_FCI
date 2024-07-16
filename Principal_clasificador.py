@@ -500,7 +500,7 @@ elif st.session_state['authentication_status'] == True:
     #with open("count_vectorizer_responsable.pkl", "rb") as file:
     loaded_tokenizer_responsable = load('vectorizer_responsable.joblib') 
 
-    st.dataframe(df2[['mensaje', 'categoria2', 'responsable_final']])
+    st.dataframe(df2[['mensaje', 'categoria_asignada_por_OAC', 'responsable_asignado_por_OAC']])
 
     txt = st.text_input('Por favor, ingrese un texto')
 
