@@ -510,7 +510,7 @@ elif st.session_state['authentication_status'] == True:
           x2 = loaded_model_responsable.predict(loaded_tokenizer_responsable.transform([limpieza_texto(txt)])[0])
           w = 'OAC debe asignar categoria' if  x1 == 'categoria0' else x1
           w2 = 'OAC debe asignar el responsable' if x2 == 'categoria0' else x2
-          st.write('El texto pertenece a la categoria: ' + w1)
+          st.write('El texto pertenece a la categoria: ' + w)
           st.write('Debe ser atendido por: ' + w2)  
         
         
