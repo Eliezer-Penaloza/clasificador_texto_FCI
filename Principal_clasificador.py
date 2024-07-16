@@ -506,9 +506,12 @@ elif st.session_state['authentication_status'] == True:
 
 
     if txt != '':
-    
-          st.write('El texto pertenece a la categoria: ' + loaded_model.predict(loaded_tokenizer.transform([limpieza_texto(txt)])[0]))
-          st.write('Debe ser atendido por: ' + loaded_model_responsable.predict(loaded_tokenizer_responsable.transform([limpieza_texto(txt)])[0]))  
+          x1 = loaded_model.predict(loaded_tokenizer.transform([limpieza_texto(txt)])[0])
+          x2 = loaded_model_responsable.predict(loaded_tokenizer_responsable.transform([limpieza_texto(txt)])[0])
+          w = 'OAC debe asignar categoria' if  x1 == 'categoria0' else x1
+          w2 = 'OAC debe asignar el responsable' if x2 == 'categoria0' else x2
+          st.write('El texto pertenece a la categoria: ' + x1)
+          st.write('Debe ser atendido por: ' + x2)  
         
         
     authenticator.logout('Cerrar sesión', 'main', key= 'unique_key')
