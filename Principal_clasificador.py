@@ -444,8 +444,8 @@ df['fecha_creacion'] = pd.to_datetime(df['fecha_creacion'])
 df['nueva_etiqueta'] = df['receptor'] + '-' + df['responsable']
 df['responsable2'] = df['nueva_etiqueta'].apply(lambda x: cfg(x))
 
-df['responsable_asignado_por_OAC'] = df['responsable2'].apply(lambda x: x  if x in cat else 'otra_categoria')
-df['categoria_asignada_por_OAC'] = df['categoria2'].apply(lambda x: x  if x in cat2 else 'otro_responsable')
+df['responsable_asignado_por_OAC'] = df['responsable2'].apply(lambda x: x  if x in cat else 'otro_responsable')
+df['categoria_asignada_por_OAC'] = df['categoria'].apply(lambda x: x  if x in cat2 else 'otra_categoria')
 df2 = df[df['fecha_creacion'] >= pd.to_datetime('2024-03-05')]
 df2['mensaje'] = df2['mensaje'].apply(lambda x: limpieza_texto(x))
 df2['long_mensaje_2'] = df2['mensaje'].apply(lambda x: len(x.split()))
