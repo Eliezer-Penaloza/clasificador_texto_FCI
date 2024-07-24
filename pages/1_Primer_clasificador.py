@@ -25,12 +25,8 @@ df = pd.read_csv('comunicaciones_09_07_2024.csv')
 df['fecha_creacion'] = pd.to_datetime(df['fecha_creacion'])
 
 
-cat = [ 'Proceso De Valoración Del Proyecto',
-       'Cambio De Vocero(A) Responsable',
-       'Problemas Con El Rif O Código Situr', 'Reporte De Insumos']
-cat = ['Gob_Guarico', 'OAC']
 
-cat2 = [ 'Proceso De Valoración Del Proyecto',
+cat = [ 'Proceso De Valoración Del Proyecto',
        'Cambio De Vocero(A) Responsable',
        'Problemas Con El Rif O Código Situr', 'Reporte De Insumos']
 
